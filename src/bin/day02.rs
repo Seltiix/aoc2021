@@ -20,8 +20,8 @@ fn main() {
     let data = fs::read_to_string("inputs/day2/day02.txt").expect("Could not read file");
     let commands = parse_input(data);
 
-    println!("Solution to part 1: {}", part1(&commands));
-    println!("Solution to part 2: {}", part2(&commands));
+    println!("Solution to Day 2, part 1: {}", part1(&commands));
+    println!("Solution to Day 2, part 2: {}", part2(&commands));
 }
 
 #[derive(Debug)]

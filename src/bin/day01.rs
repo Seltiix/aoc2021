@@ -11,8 +11,8 @@ fn main() {
     let data = fs::read_to_string("inputs/day1/day01.txt").expect("Could not read file");
     let parsed_data = parse_input(data);
 
-    println!("Solution to part 1: {}", part1(&parsed_data));
-    println!("Solution to part 2: {}", part2(&parsed_data));
+    println!("Solution to Day 1, part 1: {}", part1(&parsed_data));
+    println!("Solution to Day 1, part 2: {}", part2(&parsed_data));
 }
 
 fn part1(numbers: &[i32]) -> i32 {
