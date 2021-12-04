@@ -60,10 +60,8 @@ fn check_bingo(bingo: &[BingoDigit], index: usize) -> bool {
         if !bingo[index].drawn {
             bingo_column = false;
         }
-        //println!("Checking(Column): {:?}", bingo[index]);
     }
 
-    //println!("-------------");
     bingo_row || bingo_column
 }
 
@@ -79,7 +77,6 @@ fn mark_digit(digit: u32, bingo: &mut [BingoDigit]) -> bool {
 
     bingo[digit_index].drawn = true;
 
-    //println!("Marking: {}", digit);
     check_bingo(bingo, digit_index)
 }
 
