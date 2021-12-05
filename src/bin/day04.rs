@@ -85,11 +85,12 @@ fn main() {
     let (drawn_digits, bingos) = parse_input(data);
 
     println!(
-        "Solution to Day 3, part 1: {}",
+        "Solution to Day 4, part 1: {}",
         part1(&drawn_digits, bingos.clone())
     );
+
     println!(
-        "Solution to Day 3, part 2: {}",
+        "Solution to Day 4, part 2: {}",
         part2(&drawn_digits, bingos)
     );
 }
