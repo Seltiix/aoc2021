@@ -4,6 +4,24 @@
 use core::cmp::Ordering::{Equal, Greater, Less};
 use std::fs;
 
+fn main() {
+    let data = fs::read_to_string("inputs/day5/day05.txt").expect("Could not read file");
+    let lines = parse_input(data);
+
+    println!("Solution to Day 5, part 1: {}", part1(lines.clone()));
+    println!("Solution to Day 5, part 2: {}", part2(lines));
+}
+
+fn part1(mut lines: Vec<Line>) -> u32 {
+    lines = lines.drain_filter(|line| !line.is_horizontal()).collect();
+
+    solve(lines)
+}
+
+fn part2(lines: Vec<Line>) -> u32 {
+    solve(lines)
+}
+
 fn parse_input(data_as_string: String) -> Vec<Line> {
     let lines = data_as_string.lines();
 
@@ -62,14 +80,6 @@ impl Line {
     }
 }
 
-fn main() {
-    let data = fs::read_to_string("inputs/day5/day05.txt").expect("Could not read file");
-    let lines = parse_input(data);
-
-    println!("Solution to Day 5, part 1: {}", part1(lines.clone()));
-    println!("Solution to Day 5, part 2: {}", part2(lines));
-}
-
 fn solve(mut lines: Vec<Line>) -> u32 {
     let mut area = [[0u8; 1000]; 1000];
     for line in lines.iter_mut() {
@@ -85,16 +95,6 @@ fn solve(mut lines: Vec<Line>) -> u32 {
     area.iter()
         .flatten()
         .fold(0, |sum, point| if *point >= 2_u8 { sum + 1 } else { sum })
-}
-
-fn part1(mut lines: Vec<Line>) -> u32 {
-    lines = lines.drain_filter(|line| !line.is_horizontal()).collect();
-
-    solve(lines)
-}
-
-fn part2(lines: Vec<Line>) -> u32 {
-    solve(lines)
 }
 
 #[cfg(test)]
