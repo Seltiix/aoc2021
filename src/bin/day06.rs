@@ -2,10 +2,12 @@ use std::fs;
 
 fn parse_input(data_as_string: String) -> [u64; 9] {
     let mut starting_civilization = [0u64; 9];
+
     data_as_string
         .split(',')
-        .map(|digit| digit.parse::<usize>().unwrap())
-        .for_each(|digit| starting_civilization[digit] += 1);
+        .map(|digit| digit.parse().unwrap())
+        .for_each(|digit: usize| starting_civilization[digit] += 1);
+
     starting_civilization
 }
 
