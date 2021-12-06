@@ -1,46 +1,28 @@
-use std::collections::VecDeque;
 use std::fs;
 
-fn parse_input(data_as_string: String) -> Vec<i32> {
+fn parse_input(data_as_string: String) -> [u64; 9] {
+    let mut starting_civilization = [0u64; 9];
     data_as_string
-        .lines()
-        .map(|line| {
-            line.split(',')
-                .map(|digit| digit.parse::<i32>().unwrap())
-                .collect::<Vec<i32>>()
-        })
-        .flatten()
-        .collect()
-}
-
-fn simulate_day(civilization: &mut VecDeque<u64>) {
-    let reproducers = civilization.pop_front().unwrap();
-    civilization.push_back(reproducers);
-
-    let day6 = civilization.get_mut(6).unwrap();
-    *day6 += reproducers
-}
-
-fn get_lifecycle(start: Vec<i32>) -> VecDeque<u64> {
-    let mut starting_civilization: VecDeque<u64> = VecDeque::from([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-
-    for digit in start {
-        *starting_civilization.get_mut(digit as usize).unwrap() += 1;
-    }
-
+        .split(',')
+        .map(|digit| digit.parse::<usize>().unwrap())
+        .for_each(|digit| starting_civilization[digit] += 1);
     starting_civilization
+}
+
+fn simulate_day(civilization: &mut [u64; 9]) {
+    civilization.rotate_left(1);
+    civilization[6] += civilization[8];
 }
 
 fn main() {
     let data = fs::read_to_string("inputs/day6/day06.txt").expect("Could not read file");
     let start = parse_input(data);
 
-    println!("Solution to Day 5, part 1: {}", part1(start.clone()));
+    println!("Solution to Day 5, part 1: {}", part1(start));
     println!("Solution to Day 5, part 2: {}", part2(start));
 }
 
-fn part1(start: Vec<i32>) -> u64 {
-    let mut starting_civilization = get_lifecycle(start);
+fn part1(mut starting_civilization: [u64; 9]) -> u64 {
     for _ in 0..80 {
         simulate_day(&mut starting_civilization);
     }
@@ -48,9 +30,7 @@ fn part1(start: Vec<i32>) -> u64 {
     starting_civilization.iter().sum()
 }
 
-fn part2(start: Vec<i32>) -> u64 {
-    let mut starting_civilization = get_lifecycle(start);
-
+fn part2(mut starting_civilization: [u64; 9]) -> u64 {
     for _ in 0..256 {
         simulate_day(&mut starting_civilization);
     }
