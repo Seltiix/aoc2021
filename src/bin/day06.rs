@@ -20,8 +20,8 @@ fn main() {
     let data = fs::read_to_string("inputs/day6/day06.txt").expect("Could not read file");
     let start = parse_input(data);
 
-    println!("Solution to Day 5, part 1: {}", part1(start));
-    println!("Solution to Day 5, part 2: {}", part2(start));
+    println!("Solution to Day 6, part 1: {}", part1(start));
+    println!("Solution to Day 6, part 2: {}", part2(start));
 }
 
 fn part1(mut starting_civilization: [u64; 9]) -> u64 {
