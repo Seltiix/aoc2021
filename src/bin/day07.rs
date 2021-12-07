@@ -2,7 +2,10 @@
 use std::fs;
 
 fn parse_input(data_as_string: String) -> Vec<u32> {
-    data_as_string.split(',').map(|digit| digit.parse().unwrap()).collect()
+    data_as_string
+        .split(',')
+        .map(|digit| digit.parse().unwrap())
+        .collect()
 }
 
 fn main() {
@@ -14,10 +17,12 @@ fn main() {
 }
 
 fn part1(mut crabs: Vec<u32>) -> u32 {
-    crabs.sort();
-    let median = crabs[crabs.len()/2]; // Median is (x + x1)/2 for even length. For me it was not
+    crabs.sort_unstable();
+    let median = crabs[crabs.len() / 2]; // Median is (x + x1)/2 for even length. For me it was not
 
-    crabs.iter().fold(0, |sum, crab|  sum + crab.abs_diff(median))
+    crabs
+        .iter()
+        .fold(0, |sum, crab| sum + crab.abs_diff(median))
 }
 
 fn part2(crabs: Vec<u32>) -> u32 {
@@ -32,7 +37,6 @@ fn part2(crabs: Vec<u32>) -> u32 {
         for i in 1..=diff {
             fuel_cost += i
         }
-
     }
 
     fuel_cost
