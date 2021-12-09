@@ -18,8 +18,8 @@ fn main() {
     let data = fs::read_to_string("inputs/day9/day09.txt").expect("Could not read file");
     let field = parse_input(data);
 
-    println!("Solution to Day 8, part 1: {}", part1(&field));
-    println!("Solution to Day 8, part 2: {}", part2(&field));
+    println!("Solution to Day 9, part 1: {}", part1(&field));
+    println!("Solution to Day 9, part 2: {}", part2(&field));
 }
 #[derive(Debug, Clone, Ord, PartialOrd, Eq, PartialEq)]
 struct Coordinate {
