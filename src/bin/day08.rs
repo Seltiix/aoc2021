@@ -119,7 +119,12 @@ fn part2(signal_patterns: &mut [(Vec<String>, Vec<String>)]) -> u32 {
                 }
 
                 // Detects digit 0, depends on 6 and 9
-                if pattern.len() == 6 && !numbers[6].is_empty() && !numbers[9].is_empty() && !pattern.contains(numbers[9]) && !pattern.contains(numbers[6]) {
+                if pattern.len() == 6
+                    && !numbers[6].is_empty()
+                    && !numbers[9].is_empty()
+                    && !pattern.contains(numbers[9])
+                    && !pattern.contains(numbers[6])
+                {
                     numbers[0] = pattern;
                 }
 
